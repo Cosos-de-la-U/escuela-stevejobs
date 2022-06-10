@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte Técnico</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/material-dashboard.css?v=2.1.0">
+    <link rel="stylesheet" href="assets/demo/demo.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+
+</head>
+
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="row d-flex justify-content-center" style="margin-top: 20px;">
+                <div class="col-md-6">
+                    <div class="card ">
+                        <div class="card-header card-header-primary text-center" style="margin-bottom: 10px;">
+                            <h3 class="card-title mb-2">Recuperación de cuenta</h3>
+                            <h4 class="card-category">Escuela Steve Jobs</h4>
+                        </div>
+                        <div class="text-center" style="margin-bottom: 10px; margin-top: -10px;">
+                            <img src="assets/img/logoForRP.png">
+                        </div>
+                        <hr style="border-top: 2px solid rgba(136, 57, 167, 0.274);" />
+                        <div class="card-body">
+                            <form id="frmRecoveryPass" @submit.prevent="sendEmail">
+                                <div class="form-group mb-2 dl">
+                                    <label class="bmd-label-floating" for="cabecera">Asunto</label>
+                                    <input type="text" class="form-control" id="cabecera" name="cabecera"
+                                        v-model="cabecera" required>
+                                </div>
+                                <div class="form-group mb-2 dl">
+                                    <label class="bmd-label-floating" for="emlEmisor">Correo de comunicación</label>
+                                    <input type="email" class="form-control" id="emlEmisor" name="emlEmisor"
+                                        v-model="emlEmisor" required>
+                                </div>
+                                <div class="form-group mb-2 dl">
+                                    <label class="bmd-label-floating" for="message">Mensaje</label>
+                                    <input type="text" class="form-control" id="message" name="message"
+                                        v-model="message" required>
+                                </div>
+                                <div class="form-row justify-content-center">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-block btn-success" id="btnLogIn">
+                                            Enviar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-row justify-content-center">
+                                    <div class="col-6 text-center">
+                                        <span
+                                            :class="mEnviado ? 'text-success':'text-danger'">{{ResponseMensaje}}</span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+
+    <script src="assets/js/core/jquery.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="https://unpkg.com/default-passive-events"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Chartist JS -->
+    <script src="assets/js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="assets/js/material-dashboard.js?v=2.1.0"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/demo/demo.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', (ev) => {
+            document.querySelectorAll("#frmRecoveryPass .dl").forEach((ele) => {
+                // ele.className = "form-group mb-2 bmd-form-group is-filled";
+                ele.classList.add('is-filled');
+                console.log(ele);
+            });
+        });
+
+
+        var vueAppPass = new Vue({
+            el: '#frmRecoveryPass',
+            data: {
+                name: '',
+                message: '',
+                emldestino: 'juantomo20@gmail.com',
+                emlEmisor: '',
+                cabecera: '',
+                subcabecera: 'Datos del estudiante',
+                footer: '',
+                ResponseMensaje: '',
+                mEnviado: false
+            },
+            methods: {
+                sendEmail(e) {
+                    try {
+                        emailjs.sendForm('service_f9sg9kw', 'template_jkbfxmh', e.target,
+                            'user_Zh2tv7HnR1a3m019Hh0rs', {
+                            name: this.name,
+                            message: this.message,
+                            emldestino: this.emldestino,
+                            emlEmisor: this.emlEmisor,
+                            cabecera: this.cabecera,
+                            subcabecera: this.subcabecera,
+                            footer: ''
+                        });
+                        this.mEnviado = true;
+                        this.ResponseMensaje = "Mensaje enviado";
+
+                    } catch (error) {
+                        console.log({ error });
+                        this.mEnviado = false;
+                        this.ResponseMensaje = "Ocurrio un problema";
+                    }
+                },
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

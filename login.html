@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/material-dashboard.css">
+    <link rel="stylesheet" href="assets/demo/demo.css">
+
+</head>
+
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="row d-flex justify-content-center" style="margin-top: 5px;">
+                <div class="col-md-6">
+                    <div class="card bg-white">
+                        <div class="card-header card-header-primary text-center bg-info" style="margin-bottom: 10px;">
+                            <h3 class="card-title mb-2">Registro Académico</h3>
+                            <h4 class="card-category">Escuela Steve Jobs</h4>
+                        </div>
+                        <div class="text-center"> 
+                            <img src="assets/img/logo.png"> 
+                        </div>
+                        <hr style="border-top: 2px solid rgba(0, 198, 248, 0.274);"/>
+                        <div class="card-body b">
+                            <form id="frmLoginUsers">
+                                <div class="form-group mb-2">
+                                    <label class="bmd-label-floating text-dark">Usuario</label>
+                                    <input type="text" class="form-control" id="nmUser" required>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label class="bmd-label-floating text-dark">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" required>
+                                </div>
+                                <div class="form-row md-3">
+                                    <div class="col-6">
+                                        <span id="mensajeLogin"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row justify-content-center">
+                                    <div class="col-6">
+                                        <button type="submit" class="btn btn-block btn-info" id="btnLogIn">
+                                            Ingresar
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+
+    <script src="assets/js/core/jquery.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="https://unpkg.com/default-passive-events"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Chartist JS -->
+    <script src="assets/js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="assets/js/material-dashboard.js?v=2.1.0"></script>
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/demo/demo.js"></script>
+
+
+    <!-- FIREBASE -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAEg_yQb0FhHjl7EG967BjTcPBPZxdHmiM",
+            authDomain: "escuelascrum.firebaseapp.com",
+            databaseURL: "https://escuelascrum-default-rtdb.firebaseio.com",
+            projectId: "escuelascrum",
+            storageBucket: "escuelascrum.appspot.com",
+            messagingSenderId: "855708798969",
+            appId: "1:855708798969:web:bdad54c63bd7f4bc747728"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./assets/js/login/globalsesion.js"></script>
+    <script src="./assets/js/login/login.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", (e) => {
+            if (GetLSSesionUser()==null) {
+                console.log("puede iniciar sesin");
+            }else{
+                console.log("redirigienao a  perfiles tipo=",GetLSSesionTipoU());
+                if (GetLSSesionTipoU()=="estudiante") {
+                    RutaDeAccesoPerfilUser("estudiante/perfil");
+                }
+                else if(GetLSSesionTipoU()=="admninistrador"){
+                    RutaDeAccesoPerfilUser("administrado/gestionusuario");
+                }
+                else if(GetLSSesionTipoU()=="docente"){
+                    RutaDeAccesoPerfilUser("docente/perfil");
+                }
+                // location.reload();
+                // window.location="estudiante/perfil.html";
+            }
+            
+        });
+        
+        </script>
+
+
+</body>
+
+</html>

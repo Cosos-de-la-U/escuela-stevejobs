@@ -66,12 +66,6 @@ body {
   background-color: #fafafa;
 }
 
-#tableAdminRegs thead th {
-  cursor: pointer;
-  color: rgb(48, 48, 48);
-}
-
-
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }

@@ -64,11 +64,9 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fafafa;
-}
-
-#tableAdminRegs thead th {
+}#tableAdminRegs thead th {
   cursor: pointer;
-  color: rgb(48, 48, 48);
+  color: white;
 }
 
 

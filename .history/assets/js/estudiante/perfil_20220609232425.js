@@ -17,8 +17,15 @@ function MostrarDatosUsuario() {
                 formPerfilEstudiante["fechanacStudent"].value = doc.data().fechNacimiento;
                 formPerfilEstudiante["sexoStudent"].value = doc.data().sexo;
                 //datos de grado
+
+                //responsable
+                formPerfilEstudiante["nombreResonsble"].value = doc.data().responsable;
+                formPerfilEstudiante["telResponsable"].value = doc.data().telefono;
+                formPerfilEstudiante["emailResponsable"].value = doc.data().email;
+                formPerfilEstudiante["duiResponsable"].value = doc.data().dui;
                 formPerfilEstudiante["userStudent"].value = doc.data().user;
                 formPerfilEstudiante["passStudent"].value = doc.data().password;
+                formPerfilEstudiante["direccion"].value = doc.data().direccion;
 
 
                 document.querySelectorAll("#frmPerfilEstudiante .form-group").forEach(el => {

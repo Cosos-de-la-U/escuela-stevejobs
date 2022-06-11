@@ -66,9 +66,9 @@ body {
   background-color: #fafafa;
 }
 
-#tableAdminRegs thead th {
+#tableAdmrgb(95, 95, 95)s thead th {
   cursor: pointer;
-  color: rgb(48, 48, 48);
+  color: white;
 }
 
 

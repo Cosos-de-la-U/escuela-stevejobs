@@ -260,7 +260,10 @@ function ShowNotasStudentByMateriaAll(pTeacher, pMateria, pTableMat, pBtnclassBy
                         querySnapshotes.forEach((docet) => {
                             tableMateriaSel.innerHTML += `
                         <td class="text-center">${docet.data().nombre}</td>
+                        <td class="text-center">${docet.data().responsable}</td>
+                        <td class="text-center">${docet.data().telefono}</td>
                         <td class="text-center">${docet.data().email}</td>
+                        <td class="text-center">${docet.data().direccion}</td>
                         <td>
                             <button type="button" class="btn btn-info green accent-4 ${pBtnclassByMateria}" data-nmstudent="${docet.data().nombre}" data-nmteacher="${doc.data().profesor}" data-toggle="modal" data-target="#mdPrevImpresion">
                                 Boleta

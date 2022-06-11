@@ -62,7 +62,11 @@ function ShowAllStudentsByGradeTeacher(pGrade) {
                     <td class="text-center">${doc.data().sexo}</td>
                     <td class="text-center">${doc.data().user}</td>
                     <td class="text-center">${doc.data().password}</td>
+                    <td class="text-center">${doc.data().responsable}</td>
+                    <td class="text-center">${doc.data().telefono}</td>
                     <td class="text-center">${doc.data().email}</td>
+                    <td class="text-center">${doc.data().dui}</td>
+                    <td class="text-center">${doc.data().direccion}</td>
                     <td class="text-center">
                         <button type="button" class="btn btn-info green accent-4 btnUsetoPrintn" data-grdestu="${doc.data().grado}" data-nmestuden="${doc.data().nombre}" data-toggle="modal" data-target="#mdPrevImpresion">
                         Boleta

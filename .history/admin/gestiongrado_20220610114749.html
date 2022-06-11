@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/logoForRP.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Boleta de notas
+    Gestión de grado
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
     name='viewport' />
@@ -52,7 +52,7 @@
               <p>Gestión de usuarios</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="./gestiongrado.html">
               <i class="material-icons">class</i>
               <p>Gestión de grados</p>
@@ -64,7 +64,7 @@
               <p>Calificaciones</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="./boletanotas.html">
               <i class="material-icons">content_paste</i>
               <p>Boleta De Notas</p>
@@ -84,7 +84,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">Boleta de notas</a>
+            <a class="navbar-brand" href="javascript:void(0)">Gestión de grados</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
             aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
@@ -124,6 +124,9 @@
                       <li class="nav-item">
                         <a class="nav-link" href="notas.html" data-toggle="tab" id="printBoletNotas">
                           <div class="ripple-container"></div>
+                          <button type="button" onclick="generarPDFGrados()" class="btn btn-success"
+                            data-dismiss="modal"><i class="material-icons">print</i>
+                            Imprimir</button>
                         </a>
                       </li>
                     </ul>
@@ -170,7 +173,10 @@
                     <ul class="nav nav-tabs" data-tabs="tabs">
                       <li class="nav-item">
                         <a class="nav-link text-center" href="notas.html" data-toggle="tab" id="printBoletNotas">
-                          <div class="ripple-container"></div>
+                          <button type="button" class="btn btn-success" id="btnEstudiante" data-dismiss="modal"
+                            onclick="generarPDFEstxGrado()">
+                            <i class="material-icons">print</i>
+                            Imprimir</button>
                         </a>
                       </li>
                     </ul>
@@ -198,13 +204,25 @@
                               Sexo
                             </th>
                             <th scope="col" class="text-center text-dark">
+                              Responsable
+                            </th>
+                            <th scope="col" class="text-center text-dark">
+                              Teléfono
+                            </th>
+                            <th scope="col" class="text-center text-dark">
+                              Correo
+                            </th>
+                            <th scope="col" class="text-center text-dark">
+                              DUI
+                            </th>
+                            <th scope="col" class="text-center text-dark">
+                              Dirección
+                            </th>
+                            <th scope="col" class="text-center text-dark">
                               Usuario
                             </th>
                             <th scope="col" class="text-center text-dark">
                               Contraseña
-                            </th>
-                            <th scope="col" class="text-center text-dark">
-                              Correo
                             </th>
                           </tr>
                         </thead>
@@ -338,76 +356,6 @@
           <!-- <div class="modal-footer">
         
         </div> -->
-        </div>
-      </div>
-    </div>
-
-
-
-
-    <!-- MODAL AGREGAR NOTA PERIODOS  -->
-    <div class="modal fade" id="mdPrevImpresion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content  ">
-          <div class="modal-header">
-            <h5 class="modal-title  text-dark" id="exampleModalLabel">Imprimir boleta</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true" class=" text-dark">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body ">
-            <div class="row row-cols-1 row-cols-md-2">
-              <div class="col">
-                <ul class="list-inline">
-                  <li class="list-inline-item">
-                    <button class="btn btn-success" href="#" id="printBoletNotasEstudiantex"
-                      onclick="generarNotasXAlumno()">
-                      <i class="material-icons list-inline-item">print</i>
-                      Imprimir
-                      <div class="ripple-container"></div>
-                    </button>
-                  </li>
-                </ul>
-              </div>
-              <div class="col form-group">
-                <style>
-                  #selPerFnNotas {
-                    color: #585757;
-                  }
-                </style>
-                <label class="bmd-label-floating"></label>
-                <select class="form-control" id="selPerFnNotas" required>
-
-                  <option value="I Periodo">I Trimestre</option>
-                  <option value="II Periodo">II Trimestre</option>
-                  <option value="III Periodo">III Trimestre</option>
-                  <option value="Finales">Finales</option>
-                </select>
-              </div>
-            </div>
-            <span hidden id="nmStudente"></span>
-            <div id="boxPrintNotasxStuden" class="text-center">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group">
-
-                    <span id="nmStudentToPrintNotas" class="text-muted"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="table-responsive">
-                <table class="table" id="tbToPrintNtStudent">
-                  <thead class="text-center  text-dark" id="tableContent">
-
-                  </thead>
-                  <tbody id="tableContent">
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -612,9 +560,8 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
     </script>
+    <script src="../assets/js/admin/gestiongrados/gestiongrado.js"></script>
     <script src="../assets/js/login/globalsesion.js"></script>
-    <script src="../assets/js/admin/calificacion/header.js"></script>  
-    <script src="../assets/js/admin/boletanota/boleta.js"></script>
     <script>
       window.addEventListener("DOMContentLoaded", (e) => {
         if (GetLSSesionUser() == null) {
@@ -636,81 +583,75 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.11/jspdf.plugin.autotable.min.js"></script>
 
     <script>
-      function generarNotasXAlumno() {
-        //obteniendo fecha actual
+
+      //REPORTES grados
+      //obteniendo fecha actual
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+
+      function generarPDFGrados() {
+
+        
+        var obj = new jsPDF('p', 'pt', 'a4');
+        obj.addImage(imgData, 'PNG', 30, 20, 47, 47)
+        obj.setFont("helvetica");
+        obj.setFontType("normal");
+        obj.setFontSize(13);
+        obj.text('Escuela Steve Jobs', 80, 47)
+
+        obj.text('Reporte de Grados ', 40, 97)
+
+        // Obteniendo fecha actual
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0');
         var yyyy = today.getFullYear();
-        var doc = new jsPDF()
-        //logo
-        
-        var obj = new jsPDF('p', 'pt', 'a4');
-        var res = obj.autoTableHtmlToJson(document.getElementById("tbToPrintNtStudent"));
-        obj.addImage(imgData, 'PNG', 30, 20, 47, 47)
-        //fuente y peso de letra
-        obj.setFont("helvetica");
-        obj.setFontType("normal");
-        obj.setFontSize(14);
-        obj.text('Escuela Steve Jobs', 80, 47)
 
-        // Obteniendo período
-        var cb = document.getElementById('selPerFnNotas');
-        var txtPeriodo = cb.options[cb.selectedIndex].text;
-        obj.setFontSize(12);
-        obj.text('Resumen de notas ' + txtPeriodo, 40, 90)
-
-        // mostrando fecha actual
         obj.setFontSize(10);
         obj.text(mm + '/' + dd + '/' + yyyy, 500, 47)
 
         // Obteniendo estudiante
-        var txtEstudiante = document.getElementById('nmStudente').innerHTML;
-        //obteniendo grado
-        var gradoResp = document.getElementById('titleGradeSel').innerHTML;
-        obj.setFontSize(12);
-        //mostrando grado y estudiante var xgrado = 500;
-        var notaminima = 5;
-        var xgrado = 500;
-        if (gradoResp == "Primer Año Bachillerato" || gradoResp == "Segundo Año Bachillerato") {
-          xgrado = 420;
-          notaminima = 6;
-        }
-        obj.text(gradoResp, xgrado, 90)
-        obj.text('Estudiante: ' + txtEstudiante, 42, 130)
-
-        //Tabla del periodo especifico de x estudiantes
-        obj.autoTable({ html: '#tbToPrintNtStudent', startX: 10, startY: 150 })
-
-        // Obteniendo materias aprobadas y reprobadas        
-        var tabla = document.getElementById('tbToPrintNtStudent');
-        var materiasReprobadas = [];
-        var materiasAprobadas = [];
-
-        var selectvalue = document.getElementById('selPerFnNotas').value;
-        var countcells = 4;
-        if (selectvalue == "Finales") {
-          countcells = 1;
-        }
-        for (i = 1; i < tabla.rows.length; i++) {
-          if (tabla.rows[i].cells[1].innerText >= notaminima) {
-            materiasAprobadas.push(tabla.rows[i].cells[0].innerText);
-          }
-          else if (tabla.rows[i].cells[1].innerText < notaminima) {
-            materiasReprobadas.push(tabla.rows[i].cells[0].innerText);
-          }
-        }
-        
-        //mostrando materias reprobadas y aprobadas
-        obj.setFontSize(11);
-        let finalY = obj.lastAutoTable.finalY;
-        obj.text('Materias aprobadas: ' + materiasAprobadas.length, 40, finalY+30)
-        obj.text('' + materiasAprobadas, 40, finalY+50)
-        obj.text('Materias reprobadas: ' + materiasReprobadas.length, 40, finalY+80)
-        obj.text('' + materiasReprobadas, 40, finalY+100)
-        //guardando el pdf
-        obj.save('Notas_' + txtPeriodo + '_' + txtEstudiante + '.pdf')
+        //Obteniendo la tabla
+        var tTB = document.getElementById('tblistGrados');
+        var atTB = obj.autoTableHtmlToJson(tTB, true);
+        var cols = atTB.columns;
+        //here you are going to set which column you will truncate. Moreover, .splice(index number of the column(your start), the number of columns you will exclude)
+        cols.splice(2, 1);
+        obj.autoTable(cols, atTB.data, { startX: 10, startY: 125 })
+        obj.save('Reporte_Grados.pdf');
       }
+
+
+      function generarPDFEstxGrado() {
+
+        var obj = new jsPDF('landscape');
+        
+        obj.addImage(imgData, 'PNG', 8, 20, 25, 25)
+        //fuente y peso de letra
+        obj.setFont("helvetica");
+        obj.setFontType("normal");
+        //mostrando información general del reporte
+        obj.setFontSize(14);
+        obj.text('Escuela Steve Jobs', 32, 33)
+        obj.setFontSize(10);
+        obj.text(mm + '/' + dd + '/' + yyyy, 263, 33)
+        obj.setFontSize(12);
+        var grado = document.getElementById('titleGradeSel').innerHTML
+        obj.text('Nómina de alumnos ' + grado, 15, 50)
+
+        // Obteniendo estudiante
+        //Obteniendo la tabla
+        var tTB = document.getElementById('tblistStudents');
+        var atTB = obj.autoTableHtmlToJson(tTB, true);
+        var cols = atTB.columns;
+        //here you are going to set which column you will truncate. Moreover, .splice(index number of the column(your start), the number of columns you will exclude)
+        cols.splice(8, 2);
+        obj.autoTable(cols, atTB.data, { startX: 10, startY: 60 })
+        obj.save('Reporte_alumnos_'+grado+'s.pdf');
+      }
+
     </script>
 </body>
 

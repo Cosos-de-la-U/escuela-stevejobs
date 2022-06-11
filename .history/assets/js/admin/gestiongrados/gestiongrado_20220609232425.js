@@ -45,7 +45,11 @@ function ShowAllStudentsByGradeTeacher(pGrade) {
                     <td class="text-center">${doc.data().nombre}</td>
                     <td class="text-center">${doc.data().fechNacimiento}</td>
                     <td class="text-center">${doc.data().sexo}</td>
+                    <td class="text-center">${doc.data().responsable}</td>
+                    <td class="text-center">${doc.data().telefono}</td>
                     <td class="text-center">${doc.data().email}</td>
+                    <td class="text-center">${doc.data().dui}</td>
+                    <td class="text-center">${doc.data().direccion}</td>
                     <td class="text-center">${doc.data().user}</td>
                     <td class="text-center">${doc.data().password}</td>
                 </tr>`;

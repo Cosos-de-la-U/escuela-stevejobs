@@ -647,9 +647,9 @@
         
         var obj = new jsPDF('p', 'pt', 'a4');
         var res = obj.autoTableHtmlToJson(document.getElementById("tbToPrintNtStudent"));
-        //obj.addImage(imgData, 'PNG', 30, 20, 47, 47)
+        obj.addImage(imgData, 'PNG', 30, 20, 47, 47)
         //fuente y peso de letra
-        obj.setFont("arial");
+        obj.setFont("helvetica");
         obj.setFontType("normal");
         obj.setFontSize(14);
         obj.text('Escuela Steve Jobs', 80, 47)
